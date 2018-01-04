@@ -1,15 +1,55 @@
-<!doctype html>
+<!DOCTYPE html>
+<html>
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+</head>
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+<body>
+  <div class="container">
+    <div class="jumbotron">
+      <input type="text" id="newGifLink" class="form-control" placeholder="Link" />
+      <br />
+      <input type="text" id="newGifTitle" class="form-control" placeholder="Title" />
+      <br />
+      <button id="addGifButton" class="btn btn-success">Add</button>
+    </div>
+    <div id="gifList" class="list-group">
 
-<div class="container">
-  <div class="jumbotron">
-    <h1 class="display-4">
-      Gifs Gifs Gifs
-    </h1>
-  </div>
-</div>
+    </div>
+    <script>
+      $(() => {
+        getGifs();
+        $("#addGifButton").click(() => {
+          newGif({
+            "link": 'http://granitegrok.com/wp-content/uploads/2013/07/Question-Mark.jpg',
+            "title": 'first gif/first image'
+          });
+        })
+        // newGif('', 'first gif/first image');
+        // newGif('', 'second gif/second image');
+      })
+
+      function newGif(gif) {
+        $("#gifList").append(`<a href=""><div class="list-group-item list-group-item-action" >
+        <img src="${gif.link}" /> <h6>${gif.title}</h6><br />
+        </div></a>`);
+      }
+
+      function getGifs(){
+        $.get('http://localhost:2530/gifs', (data) => {
+          // console.log(data);
+          data.forEach(function(element){
+            newGif(element);
+          })
+        })
+      }
+    </script>
+</body>
+
+</html>

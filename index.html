@@ -8,6 +8,8 @@
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="gifList.js"></script>
+
 </head>
 
 <body>
@@ -20,36 +22,7 @@
       <button id="addGifButton" class="btn btn-success">Add</button>
     </div>
     <div id="gifList" class="list-group">
-
-    </div>
-    <script>
-      $(() => {
-        getGifs();
-        $("#addGifButton").click(() => {
-          newGif({
-            "link": 'http://granitegrok.com/wp-content/uploads/2013/07/Question-Mark.jpg',
-            "title": 'first gif/first image'
-          });
-        })
-        // newGif('', 'first gif/first image');
-        // newGif('', 'second gif/second image');
-      })
-
-      function newGif(gif) {
-        $("#gifList").append(`<a href=""><div class="list-group-item list-group-item-action" >
-        <img src="${gif.link}" /> <h6>${gif.title}</h6><br />
-        </div></a>`);
-      }
-
-      function getGifs(){
-        $.get('http://localhost:2530/gifs', (data) => {
-          // console.log(data);
-          data.forEach(function(element){
-            newGif(element);
-          })
-        })
-      }
-    </script>
+      </div>
 </body>
 
 </html>

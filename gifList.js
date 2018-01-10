@@ -8,6 +8,7 @@ $(() => {
     };
     console.log(gif.link);
     newGif(gif);
+    postGif(gif);
   })
   // newGif('', 'first gif/first image');
   // newGif('', 'second gif/second image');
@@ -20,7 +21,7 @@ function newGif(gif) {
 }
 
 function getGifs(){
-  $.get('http://localhost:2530/gifs', (data) => {
+  $.get('http://localhost:3500/gifs', (data) => {
     // console.log(data);
     data.forEach(function(element){
       newGif(element);
@@ -28,11 +29,6 @@ function getGifs(){
   })
 }
 
-function postGifs(gif){
-  $.post('http://localhost:2530/gifs', gif, (data) => {
-    // console.log(data);
-    data.forEach(function(element){
-      newGif(element);
-    })
-  })
+function postGif(gif){
+  $.post('http://localhost:3500/gifs', gif);
 }

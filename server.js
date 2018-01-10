@@ -1,3 +1,4 @@
+'use strict;'
 var express = require ('express');
 var bodyParser = require('body-parser');
 var app = express();
@@ -27,6 +28,7 @@ app.post('/gifs', (req, res) => {
 })
 
 app.use(express.static(__dirname));
-var server = app.listen(2530, () => {
+
+var server = app.listen(3500, () => {
   console.log('server listening on port '+server.address().port);
 });

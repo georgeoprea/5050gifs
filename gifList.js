@@ -1,3 +1,4 @@
+var socket = io()
 $(() => {
   getGifs();
   $("#addGifButton").click(() => {
@@ -13,6 +14,8 @@ $(() => {
   // newGif('', 'first gif/first image');
   // newGif('', 'second gif/second image');
 })
+
+socket.on('gif', newGif) 
 
 function newGif(gif) {
   $("#gifList").append(`<a href=""><div class="list-group-item list-group-item-action" >

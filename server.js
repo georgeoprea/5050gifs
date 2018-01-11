@@ -2,6 +2,8 @@
 var express = require ('express');
 var bodyParser = require('body-parser');
 var app = express();
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
 
 app.use(express.static(__dirname));
 app.use(bodyParser.json());
@@ -24,11 +26,16 @@ app.get('/gifs', (req, res) => {
 
 app.post('/gifs', (req, res) => {
   gifs.push(req.body);
+	io.emit('gif', req.body);
   res.sendStatus(200);
+})
+
+io.on('connection', (socket) => {
+	console.log("user connected");
 })
 
 app.use(express.static(__dirname));
 
-var server = app.listen(3500, () => {
+var server = http .listen(3500, () => {
   console.log('server listening on port '+server.address().port);
 });

@@ -23,21 +23,13 @@ function newGif(gif) {
   </div></a>`);
 }
 
+
+var path = window.location.origin + "/gifs"
+
 function getGifs(){
-//   var xhr = new XMLHttpRequest();
-// xhr.open("get", "http://localhost:3500/gifs", true);
-// xhr.onload = function(data){  //instead of onreadystatechange
-//     //do something
-//     data.forEach(function(element){
-//          newGif(element);
-//        })
-// };
-// xhr.send(null);
+  console.log("path is + " + path);
 
-
-
-
-  $.get('http://localhost:3500/gifs', (data) => {
+  $.get(path, (data) => {
     // console.log(data);
     data.forEach(function(element){
       newGif(element);
@@ -46,5 +38,5 @@ function getGifs(){
 }
 
 function postGif(gif){
-  $.post('http://localhost:3500/gifs', gif);
+  $.post(path, gif);
 }

@@ -8,7 +8,12 @@ var io = require('socket.io')(http);
 app.use(express.static(__dirname));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
-
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET,POST');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  next();  
+})
 var gifs = [
   {
     link:'https://media.giphy.com/media/iThaM3NlpjH0Y/giphy.gif',

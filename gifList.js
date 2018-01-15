@@ -4,8 +4,9 @@ $(() => {
     $("#addGifButton").click(() => {
 
         var gif = {
-            link: $("#newGifLink").val(),
-            title: $("#newGifTitle").val(),
+            // language=JQuery-CSS
+            link: $('#newGifLink').val(),
+            title: $('#newGifTitle').val(),
         };
         console.log(gif.link);
         newGif(gif);
@@ -27,6 +28,7 @@ function newGif(gif) {
 var path = window.location.origin + "/gifs"
 
 function getGifs() {
+    console.log('window.location.origin is' + window.location.origin);
     console.log("path is + " + path);
 
     $.get(path, (data) => {

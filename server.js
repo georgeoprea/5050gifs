@@ -13,7 +13,8 @@ app.use((req, res, next) => {
     res.header('Access-Control-Allow-Methods', 'GET,POST');
     res.header('Access-Control-Allow-Headers', 'Content-Type');
     next();
-})
+});
+
 var gifs = [
     {
         link: 'https://media.giphy.com/media/iThaM3NlpjH0Y/giphy.gif',
@@ -27,13 +28,17 @@ var gifs = [
 
 app.get('/gifs', (req, res) => {
     res.send(gifs);
-})
+});
+
+app.get('/gifs/*',(req,res) => {
+  
+});
 
 app.post('/gifs', (req, res) => {
     gifs.push(req.body);
     io.emit('gif', req.body);
     res.sendStatus(200);
-})
+});
 
 io.on('connection', (socket) => {
     console.log("user connected");

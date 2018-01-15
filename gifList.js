@@ -9,7 +9,6 @@ $(() => {
             title: $('#newGifTitle').val(),
         };
         console.log(gif.link);
-        newGif(gif);
         postGif(gif);
     })
     // newGif('', 'first gif/first image');

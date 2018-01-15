@@ -1,24 +1,24 @@
 var socket = io()
 $(() => {
-  getGifs();
-  $("#addGifButton").click(() => {
+    getGifs();
+    $("#addGifButton").click(() => {
 
-    var gif = {
-      link : $("#newGifLink").val(),
-      title: $("#newGifTitle").val(),
-    };
-    console.log(gif.link);
-    newGif(gif);
-    postGif(gif);
-  })
-  // newGif('', 'first gif/first image');
-  // newGif('', 'second gif/second image');
+        var gif = {
+            link: $("#newGifLink").val(),
+            title: $("#newGifTitle").val(),
+        };
+        console.log(gif.link);
+        newGif(gif);
+        postGif(gif);
+    })
+    // newGif('', 'first gif/first image');
+    // newGif('', 'second gif/second image');
 })
 
 socket.on('gif', newGif)
 
 function newGif(gif) {
-  $("#gifList").append(`<a href=""><div class="list-group-item list-group-item-action" >
+    $("#gifList").append(`<a href=""><div class="list-group-item list-group-item-action" >
   <img src="${gif.link}" /> <h6>${gif.title}</h6><br />
   </div></a>`);
 }
@@ -26,17 +26,17 @@ function newGif(gif) {
 
 var path = window.location.origin + "/gifs"
 
-function getGifs(){
-  console.log("path is + " + path);
+function getGifs() {
+    console.log("path is + " + path);
 
-  $.get(path, (data) => {
-    // console.log(data);
-    data.forEach(function(element){
-      newGif(element);
+    $.get(path, (data) => {
+        // console.log(data);
+        data.forEach(function (element) {
+            newGif(element);
+        })
     })
-  })
 }
 
-function postGif(gif){
-  $.post(path, gif);
+function postGif(gif) {
+    $.post(path, gif);
 }
